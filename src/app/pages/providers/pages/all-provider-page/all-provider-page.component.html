@@ -1,0 +1,12 @@
+
+<h1 class="text-center mb-5 text-3xl bold">Lista de Proveedores</h1>
+<section class=" flex flex-col gap-2">
+
+
+  @for (item of providerService.providers(); track $index) {
+    <box-provider [provider]="item" />
+  }
+
+
+</section>
+
