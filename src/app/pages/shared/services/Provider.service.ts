@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../../environments/environment.development';
 import { catchError, tap, throwError } from 'rxjs';
-import { Provider,ResponseRequest } from '../interfaces/Provider';
+import { Provider,ResponseProvider,ResponseRequest } from '../../providers/interfaces/Provider';
 
 
 const API_URL = environment.API_URL;
@@ -15,6 +15,9 @@ export class ProviderService {
   private http = inject(HttpClient);
 
   public providers= signal<Provider[]>([]);
+  public providerSelected = signal<Provider>({} as Provider);
+
+
 
 
   getAllProviders(){
@@ -31,5 +34,16 @@ export class ProviderService {
       })
     ).subscribe()
   }
+
+  getProviderById(id: number){
+    this.http.get<ResponseProvider>(`${API_URL}/providers/${id}`).pipe(
+      tap((data) => {
+        console.log(data)
+        this.providerSelected.set(data.data);
+      })
+    ).subscribe()
+  }
+
+
 
 }

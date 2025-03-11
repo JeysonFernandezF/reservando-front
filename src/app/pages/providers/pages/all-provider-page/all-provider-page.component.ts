@@ -1,6 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { BoxProviderComponent } from "../../components/box-provider/box-provider.component";
-import { ProviderService } from '../../services/Provider.service';
+import { ProviderService } from '../../../shared/services/Provider.service';
+import { Provider } from '../../interfaces/Provider';
 
 @Component({
   selector: 'app-all-provider-page',
@@ -11,10 +12,7 @@ export class AllProviderPageComponent implements OnInit{
 
   providerService = inject(ProviderService)
 
-
-
   ngOnInit(): void {
     this.providerService.getAllProviders();
-    console.log(this.providerService.providers())
   }
 }

@@ -1,0 +1,5 @@
+<div>
+  {{provider().name}}
+</div>
+
+<calendar (selectedDay)="selectDay($event)" [meetings]="appointmentService.appoinments()" />
